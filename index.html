@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة استخراج النصوص من الصور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      
+    
+         h1{
+            color: #ffffff; /* تغيير لون النص عند التمرير */
+            text-shadow: 0 2px 4px yellow; /* إضافة ظل للنص */
+            transition: color 0.3s ease, text-shadow 0.3s ease; /* إضافة تأثير انتقال سلس */
+            padding: 0.5rem; /* إضافة حشوة للنص */
+            border-radius: 0.5rem; /* إضافة زوايا دائرية */
+            background: linear-gradient(to right, #f97316, #f59e0b); /* bg-gradient-to-r from-orange-500 to-yellow-500 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* إضافة ظل للصندوق */
+            text-decoration: none; /* إزالة التسطير */
+font-family: Georgia, 'Times New Roman', Times,italic, serif;
+;
+            font-size: 2rem; /* تكبير حجم الخط */
+            margin-bottom: 1rem; /* إضافة مسافة أسفل العنوان */
+        }
+        body {
+            background: linear-gradient(to bottom right, #4f46e5, #7c3aed); /* bg-gradient-to-br from-indigo-500 to-purple-600 */
+            color: #7c3aed; /* text-white */
+            font-family: 'Inter', sans-serif; /* استخدام خط Inter */
+        }
+       
+        .circular-image-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: absolute;
+            top: -200px; /* نصف ارتفاع الصورة */
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid #007bff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+        img:hover {
+            transform: scale(1.05); /* تكبير الصورة عند التمرير */
+        }
+
+        .circular-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            z-index: 2; 
+        }
+
+        /* تنسيقات إضافية لضمان عدم وجود مسافات غير مرغوبة */
+        body {
+            margin: 0; /* إزالة الهوامش الافتراضية للجسم */
+            padding: 0; /* إزالة الحشوة الافتراضية للجسم */
+            text-align: center; /* لتوسيط المحتوى إذا كانت الصورة في وسط الصفحة */
+        }
+        /* Custom font for Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            z-index: 2; 
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styling for file input button */
+        .custom-file-input::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+        .custom-file-input::before {
+            content: 'اختر صورة'; /* Text for the button */
+            display: inline-block;
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Gradient background */
+            color: white;
+            border: none;
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            cursor: pointer;
+            font-weight: 700; /* font-bold */
+            transition: all 0.3s ease; /* transition duration-300 ease-in-out */
+            transform: scale(1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+        }
+        div{
+            z-index: 1;
+        }
+        .custom-file-input:hover::before {
+            transform: scale(1.05); /* hover:scale-105 */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* stronger shadow on hover */
+        }
+        .custom-file-input:active::before {
+            transform: scale(0.98);
+        }
+
+        .main-container {
+            position: relative;
+            margin-top: 200px; /* لإفساح مجال للصورة */
+            z-index: 1;
+        }
+
+        /* تحديث z-index للمربع الأبيض */
+        .content-box {
+            margin-top: 100px;
+            position: relative;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center min-h-screen p-4">
+    <div class="main-container">
+        <!-- نقل الصورة هنا، خارج المربع الأبيض -->
+        <div class="circular-image-container">
+            <img src="photo_2025-05-28_13-15-08.jpg" alt="وصف الصورة" class="circular-image">
+        </div>
+    <h1 >اهلا بكم في موقع المهندس سيف الامل 1 مسائي </h1>
+
+        <!-- إضافة class للمربع الأبيض -->
+        <div class="content-box bg-white p-8 md:p-12 rounded-2xl shadow-2xl w-full max-w-3xl text-right transform transition-all duration-300 ease-in-out hover:shadow-3xl">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center leading-tight">
+                <i class="fas fa-image text-indigo-500 mr-3"></i>
+                أداة استخراج النصوص من الصور
+                <i class="fas fa-file-word text-purple-600 ml-3"></i>
+            </h2>
+
+            <div class="mb-8 text-center">
+                <label for="fileInput" class="block text-gray-700 text-xl font-semibold mb-4">
+                    <i class="fas fa-upload text-blue-500 mr-2"></i>
+                    اختر صورة لتحويلها إلى نص:
+                </label>
+                <input type="file" id="fileInput" accept="image/*"
+                       class="custom-file-input w-full cursor-pointer">
+                <p class="text-sm text-gray-500 mt-2">
+                    <i class="fas fa-info-circle mr-1"></i>
+                    يدعم صيغ الصور الشائعة (PNG, JPG, JPEG).
+                </p>
+            </div>
+
+            <div id="loadingIndicator" class="hidden text-center py-6">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-t-4 border-indigo-500 border-t-transparent"></div>
+                <p class="text-gray-600 mt-4 text-lg font-medium">جاري استخراج النص، يرجى الانتظار...</p>
+            </div>
+
+            <div id="extractedTextContainer" class="hidden mb-8">
+                <label for="extractedText" class="block text-gray-700 text-xl font-semibold mb-4">
+                    <i class="fas fa-clipboard-list text-green-500 mr-2"></i>
+                    النص المستخرج:
+                </label>
+                <textarea id="extractedText" readonly
+                          class="w-full h-80 p-5 border border-gray-300 rounded-xl bg-gray-50 text-gray-800 text-base leading-relaxed focus:outline-none focus:ring-4 focus:ring-blue-300 resize-y shadow-inner transition-all duration-200"></textarea>
+            </div>
+
+            <div class="text-center">
+                <button id="downloadWordBtn"
+                        class="hidden bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-opacity-75 text-lg">
+                    <i class="fas fa-download mr-3"></i>
+                    تنزيل كملف Word
+                </button>
+            </div>
+
+            <div id="messageBox" class="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center hidden z-50 p-4">
+                <div class="bg-white p-8 rounded-xl shadow-2xl text-center max-w-md w-full transform scale-95 opacity-0 transition-all duration-300 ease-out" id="messageBoxContent">
+                    <p id="messageText" class="text-gray-800 text-xl font-semibold mb-6"></p>
+                    <button id="closeMessageBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none transition duration-300 ease-in-out transform hover:scale-105">
+                        إغلاق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const fileInput = document.getElementById('fileInput');
+        const extractedTextContainer = document.getElementById('extractedTextContainer');
+        const extractedTextArea = document.getElementById('extractedText');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const downloadWordBtn = document.getElementById('downloadWordBtn');
+        const messageBox = document.getElementById('messageBox');
+        const messageBoxContent = document.getElementById('messageBoxContent');
+        const messageText = document.getElementById('messageText');
+        const closeMessageBtn = document.getElementById('closeMessageBtn');
+
+        // Function to show custom message box with animation
+        function showMessage(message) {
+            messageText.textContent = message;
+            messageBox.classList.remove('hidden');
+            setTimeout(() => {
+                messageBoxContent.classList.remove('scale-95', 'opacity-0');
+                messageBoxContent.classList.add('scale-100', 'opacity-100');
+            }, 50); // Small delay for animation to trigger
+        }
+
+        // Function to hide custom message box with animation
+        function hideMessageBox() {
+            messageBoxContent.classList.remove('scale-100', 'opacity-100');
+            messageBoxContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 300); // Match CSS transition duration
+        }
+
+        // Event listener for closing the message box
+        closeMessageBtn.addEventListener('click', hideMessageBox);
+
+        // Event listener for file input change
+        fileInput.addEventListener('change', async (event) => {
+            const selectedFile = event.target.files[0];
+            if (!selectedFile) {
+                // If no file is selected, hide previous results and buttons
+                extractedTextContainer.classList.add('hidden');
+                downloadWordBtn.classList.add('hidden');
+                return;
+            }
+
+            // Hide previous results and show loading indicator
+            extractedTextContainer.classList.add('hidden');
+            downloadWordBtn.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+
+            const reader = new FileReader();
+            reader.readAsDataURL(selectedFile);
+
+            reader.onloadend = async () => {
+                const base64ImageData = reader.result.split(',')[1];
+                const mimeType = selectedFile.type;
+
+                // Prompt for Gemini API in Arabic
+                const prompt = "استخرج النص من هذه الصورة مع الحفاظ على الجداول والتنسيق الكامل. إذا وجدت جداول، فحوّلها إلى تنسيق HTML يمكن تحويله مباشرة إلى ملف Word.";
+
+                // Construct the payload for the Gemini API call
+                const payload = {
+                    contents: [
+                        {
+                            role: "user",
+                            parts: [
+                                { text: prompt },
+                                {
+                                    inlineData: {
+                                        mimeType: mimeType,
+                                        data: base64ImageData
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                };
+
+                // Set API key to an empty string as per instructions
+                const apiKey = "AIzaSyCgZGSfs9BYkAXHgnbrxboFg1CdT_KRFog";
+                // The Gemini model used for text extraction is gemini-2.0-flash
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                try {
+                    // Make the API call
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    // Parse the JSON response
+                    const result = await response.json();
+
+                    // Check if text was extracted successfully
+                    if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        const htmlText = result.candidates[0].content.parts[0].text;
+
+                        // Display the extracted text and show the container
+                        extractedTextArea.value = htmlText;
+                        extractedTextContainer.classList.remove('hidden');
+                        downloadWordBtn.classList.remove('hidden'); // Show download button
+
+                        // Add event listener for the download button
+                        downloadWordBtn.onclick = () => {
+                            // Create a full HTML document for Word export
+                            const fullHtml = `
+                                <!DOCTYPE html>
+                                <html lang="ar" dir="rtl">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <title>النص المستخرج</title>
+                                    <style>
+                                        body { font-family: 'Inter', sans-serif; direction: rtl; text-align: right; margin: 1in; line-height: 1.6; color: #333; }
+                                        table { border-collapse: collapse; width: 100%; margin-bottom: 1.5em; border: 1px solid #ddd; }
+                                        th, td { border: 1px solid #ddd; padding: 12px; text-align: right; vertical-align: top; }
+                                        th { background-color: #f2f2f2; font-weight: bold; }
+                                        /* Basic styling for common elements to ensure better Word export */
+                                        h1, h2, h3, h4, h5, h6 { margin-top: 1.5em; margin-bottom: 0.75em; color: #222; }
+                                        p { margin-bottom: 1em; }
+                                        ul, ol { margin-left: 2em; margin-bottom: 1em; list-style-position: inside; }
+                                        li { margin-bottom: 0.5em; }
+                                        a { color: #007bff; text-decoration: underline; }
+                                        strong { font-weight: bold; }
+                                        em { font-style: italic; }
+                                    </style>
+                                </head>
+                                <body>
+                                    ${htmlText}
+                                </body>
+                                </html>
+                            `;
+
+                            // Create a Blob and trigger download
+                            const blob = new Blob([fullHtml], { type: 'application/msword' });
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = 'النص_المستخرج.doc';
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        };
+
+                    } else {
+                        // Show custom message if no text is found
+                        showMessage("لم يتم العثور على نص مستخرج من الصورة. يرجى التأكد من وضوح النص في الصورة.");
+                    }
+                } catch (err) {
+                    // Show custom message for API errors
+                    showMessage("حدث خطأ أثناء الاتصال بـ Gemini: " + err.message + ". يرجى المحاولة مرة أخرى.");
+                } finally {
+                    // Hide loading indicator regardless of success or failure
+                    loadingIndicator.classList.add('hidden');
+                }
+            };
+        });
+    </script>
+</body>
+</html>
+
